@@ -11,6 +11,9 @@ import "../styles/Letters.scss";
 import "../styles/Form.scss";
 import "../styles/Header.scss";
 
+//components
+import Header from "../components/Header";
+
 function App() {
   const [word, setWord] = useState("");
   const [userLetters, setUserLetters] = useState([]);
@@ -84,9 +87,8 @@ function App() {
 
   return (
     <div className="page">
-      <header>
-        <h1 className="header__title">Juego del ahorcado</h1>
-      </header>
+      <Header text="Juego del ahorcado" className="header__title" />
+
       <main className="main">
         <section>
           <div className="solution">
