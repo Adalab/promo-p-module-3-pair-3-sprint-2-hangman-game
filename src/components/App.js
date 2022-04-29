@@ -16,6 +16,7 @@ import Header from "../components/Header";
 import Dummy from "./Dummy";
 import SolutionLetters from "./SolutionLetters";
 import ErrorLetters from "./ErrorLetters";
+import Form from "./Form";
 
 function App() {
   const [word, setWord] = useState("");
@@ -31,20 +32,11 @@ function App() {
 
   // events
 
-  const handleKeyDown = (ev) => {
-    // Sabrías decir para qué es esta línea
-    ev.target.setSelectionRange(0, 1);
-  };
-
-  const handleChange = (ev) => {
+  const handleChange = (inputLetter) => {
     let re = /[a-zA-Z]/; //add regular pattern - lesson 3.3 exercise 2
-    if (re.test(ev.target.value)) {
-      handleLastLetter(ev.target.value);
+    if (re.test(inputLetter)) {
+      handleLastLetter(inputLetter);
     }
-  };
-
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
   };
 
   const getNumberOfErrors = () => {
@@ -96,23 +88,7 @@ function App() {
         <section>
           <SolutionLetters renderSolutionLetters={renderSolutionLetters()} />
           <ErrorLetters renderErrorLetters={renderErrorLetters()} />
-          <form className="form" onSubmit={handleSubmit}>
-            <label className="title" htmlFor="last-letter">
-              Escribe una letra:
-            </label>
-            <input
-              autoFocus
-              autoComplete="off"
-              className="form__input"
-              maxLength="1"
-              type="text"
-              name="last-letter"
-              id="last-letter"
-              value={lastLetter}
-              onKeyDown={handleKeyDown}
-              onChange={handleChange}
-            />
-          </form>
+          <Form lastLetter={lastLetter} handleChange={handleChange} />
         </section>
         <Dummy getNumberOfErrors={getNumberOfErrors()} />
       </main>
