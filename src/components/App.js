@@ -1,6 +1,7 @@
 //Fichero App.js
 
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 // api
 import getWordFromApi from "../services/api";
@@ -17,6 +18,9 @@ import Dummy from "./Dummy";
 import SolutionLetters from "./SolutionLetters";
 import ErrorLetters from "./ErrorLetters";
 import Form from "./Form";
+import Footer from "./Footer";
+import Instructions from "./Instructions";
+import Options from "./Options";
 
 function App() {
   const [word, setWord] = useState("");
@@ -83,15 +87,30 @@ function App() {
   return (
     <div className="page">
       <Header text="Juego del ahorcado" className="header__title" />
-
       <main className="main">
-        <section>
-          <SolutionLetters renderSolutionLetters={renderSolutionLetters()} />
-          <ErrorLetters renderErrorLetters={renderErrorLetters()} />
-          <Form lastLetter={lastLetter} handleChange={handleChange} />
-        </section>
-        <Dummy getNumberOfErrors={getNumberOfErrors()} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <section>
+                <SolutionLetters
+                  renderSolutionLetters={renderSolutionLetters()}
+                />
+                <ErrorLetters renderErrorLetters={renderErrorLetters()} />
+                <Form lastLetter={lastLetter} handleChange={handleChange} />
+              </section>
+            }
+          ></Route>
+          <Route path="/instructions" element={<Instructions />}></Route>
+          <Route path="/options" element={<Options />}></Route>
+          <Route
+            path="/"
+            element={<Dummy getNumberOfErrors={getNumberOfErrors()} />}
+          ></Route>
+        </Routes>
       </main>
+
+      <Footer />
     </div>
   );
 }
