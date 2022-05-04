@@ -1,17 +1,21 @@
-const Options = () => {
+const Options = (props) => {
+  const handleChange = (ev) => {
+    props.handleChangeLetter(ev.target.value);
+  };
   return (
     <form>
-      <label className="title" forHtml="word">
+      <label className="title" htmlFor="word">
         Escribe aquí la palabra que hay que adivinar:
       </label>
       <input
-        autofocus
-        autocomplete="off"
+        autoFocus
+        autoComplete="off"
         className="form__input"
-        maxlength="15"
+        maxLength="15"
         type="text"
         id="word"
         name="word"
+        onChange={handleChange}
       />
     </form>
   );

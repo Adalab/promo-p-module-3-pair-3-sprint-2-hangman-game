@@ -16,16 +16,19 @@ import Form from "./Form";
 import Footer from "./Footer";
 import Instructions from "./Instructions";
 import Options from "./Options";
+import Loading from "../components/Loading";
 
 function App() {
   const [word, setWord] = useState("");
   const [userLetters, setUserLetters] = useState([]);
   const [lastLetter, setLastLetter] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   // const maxNumberOfErrors = 13;
 
   useEffect(() => {
     getWordFromApi().then((word) => {
       setWord(word);
+      setIsLoading(false);
     });
   }, []);
 
@@ -79,6 +82,10 @@ function App() {
     setUserLetters([...userLetters]);
   };
 
+  const handleChangeLetter = (value) => {
+    setWord(value);
+  };
+
   return (
     <div className="page">
       <Header text="Juego del ahorcado" className="header__title" />
@@ -88,6 +95,7 @@ function App() {
             path="/"
             element={
               <section>
+                <Loading />
                 <SolutionLetters
                   renderSolutionLetters={renderSolutionLetters()}
                 />
@@ -99,7 +107,10 @@ function App() {
             }
           ></Route>
           <Route path="/instructions" element={<Instructions />}></Route>
-          <Route path="/options" element={<Options />}></Route>
+          <Route
+            path="/options"
+            element={<Options handleChangeLetter={handleChangeLetter} />}
+          ></Route>
         </Routes>
       </main>
 
