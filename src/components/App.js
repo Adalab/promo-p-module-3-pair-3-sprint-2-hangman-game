@@ -1,5 +1,4 @@
 //Fichero App.js
-
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -7,10 +6,6 @@ import { Routes, Route } from "react-router-dom";
 import getWordFromApi from "../services/api";
 // styles
 import "../styles/App.scss";
-import "../styles/Dummy.scss";
-import "../styles/Letters.scss";
-import "../styles/Form.scss";
-import "../styles/Header.scss";
 
 //components
 import Header from "../components/Header";
@@ -98,15 +93,13 @@ function App() {
                 />
                 <ErrorLetters renderErrorLetters={renderErrorLetters()} />
                 <Form lastLetter={lastLetter} handleChange={handleChange} />
+
+                <Dummy getNumberOfErrors={getNumberOfErrors()} />
               </section>
             }
           ></Route>
           <Route path="/instructions" element={<Instructions />}></Route>
           <Route path="/options" element={<Options />}></Route>
-          <Route
-            path="/"
-            element={<Dummy getNumberOfErrors={getNumberOfErrors()} />}
-          ></Route>
         </Routes>
       </main>
 

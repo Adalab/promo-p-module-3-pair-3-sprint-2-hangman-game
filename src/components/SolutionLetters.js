@@ -1,3 +1,4 @@
+import "../styles/Letters.scss";
 const SolutionLetters = (props) => {
   return (
     <div className="solution">

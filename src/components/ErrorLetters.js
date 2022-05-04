@@ -1,3 +1,4 @@
+import "../styles/Letters.scss";
 const ErrorLetters = (props) => {
   return (
     <div className="error">
